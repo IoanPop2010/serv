@@ -3,36 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services Pro | Ultra Performance</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="app.js"></script>
+    <title>Services Pro | Ultra</title>
+    <style>
+        /* CSS Critic integrat direct pentru incarcare instantanee */
+        :root {
+            --pco-green: #679436;
+            --sidebar-bg: #2c3e50;
+            --main-bg: #f5f7f9;
+            --text-dark: #333;
+            --border: #e1e4e8;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            height: 100vh; overflow: hidden;
+            background: var(--main-bg);
+        }
+
+        .app-shell {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar Navigatie */
+        .sidebar {
+            width: 220px;
+            background: var(--sidebar-bg);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            padding: 12px 20px;
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .sidebar a.active { background: var(--pco-green); color: white; }
+
+        /* Zona Principala */
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .top-bar {
+            background: white;
+            padding: 15px 30px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-input {
+            padding: 8px 15px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            width: 300px;
+        }
+
+        .content-area { padding: 30px; }
+
+        .plan-header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid var(--pco-green);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        /* Tabelul de Performanta */
+        .order-list {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.1s;
+        }
+
+        .row:hover { background: #f9fbff; }
+
+        .time { width: 60px; font-weight: bold; color: #7f8c8d; }
+        .title { flex: 1; font-weight: 600; color: var(--text-dark); }
+        .bpm { background: #eee; padding: 2px 8px; border-radius: 10px; font-size: 11px; margin-left: 10px; }
+        .length { width: 50px; text-align: right; color: #95a5a6; }
+
+        .btn-add {
+            background: var(--pco-green);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
 </head>
-<body class="loading">
-    <div id="app-shell">
-        <nav class="side-nav" aria-label="Main Navigation">
-            <header class="nav-brand">SERVICES</header>
-            <div class="nav-links">
-                <button class="nav-item active" data-view="plans">Plans</button>
-                <button class="nav-item" data-view="songs">Songs</button>
-                <button class="nav-item" data-view="people">People</button>
+<body>
+
+<div class="app-shell">
+    <nav class="sidebar">
+        <div style="padding: 0 20px 20px; font-weight: 900; font-size: 18px;">SERVICES PRO</div>
+        <a href="#" class="active">Plans</a>
+        <a href="#">Songs</a>
+        <a href="#">People</a>
+        <a href="#">Media</a>
+    </nav>
+
+    <main class="main-container">
+        <header class="top-bar">
+            <input type="text" class="search-input" placeholder="Căutare rapidă (Ctrl+K)...">
+            <div>
+                <button style="background:none; border:1px solid #ccc; padding:8px 12px; border-radius:5px; margin-right:10px;">Matrix</button>
+                <button class="btn-add">Add Plan</button>
             </div>
-        </nav>
+        </header>
 
-        <main class="viewport">
-            <header class="action-bar">
-                <div class="search-wrapper">
-                    <input type="search" placeholder="Căutare rapidă (Ctrl+K)" id="global-search">
-                </div>
-                <div class="user-actions">
-                    <button class="btn-ghost">Matrix</button>
-                    <button class="btn-primary">Add Plan</button>
-                </div>
-            </header>
+        <div class="content-area">
+            <div class="plan-header">
+                <div style="color: #666; font-size: 12px;">Contemporary Service > Sunday</div>
+                <h1 style="margin: 5px 0;">Let my people go</h1>
+                <div style="color: #999; font-size: 14px;">26 Aprilie 2026</div>
+            </div>
 
-            <section class="stage">
-                <div class="skeleton-loader"></div> </section>
-        </main>
-    </div>
+            <div class="order-list" id="order-container">
+                </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    const data = [
+        { time: "09:00", title: "Way Maker", bpm: "68 BPM", length: "5:30" },
+        { time: "09:05", title: "Welcome", bpm: null, length: "2:00" },
+        { time: "09:07", title: "Reckless Love", bpm: "83 BPM", length: "6:15" },
+        { time: "09:13", title: "Prayer", bpm: null, length: "3:00" }
+    ];
+
+    const container = document.getElementById('order-container');
+    container.innerHTML = data.map(item => `
+        <div class="row">
+            <div class="time">${item.time}</div>
+            <div class="title">
+                ${item.title}
+                ${item.bpm ? `<span class="bpm">${item.bpm}</span>` : ''}
+            </div>
+            <div class="length">${item.length}</div>
+        </div>
+    `).join('');
+</script>
+
 </body>
 </html>
