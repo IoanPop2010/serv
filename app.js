@@ -1,19 +1,27 @@
-const serviceData = [
-    { time: "09:00", element: "Prolog Video", details: "Countdown 5 min", duration: "5:00" },
-    { time: "09:05", element: "Worship: Is He Worthy", details: "Key: G", duration: "6:30" },
-    { time: "09:12", element: "Anunțuri", details: "Slide-uri evenimente", duration: "3:00" }
-];
+const State = {
+    planItems: [
+        { id: 1, type: 'song', title: 'Way Maker', duration: '5:30', bpm: 68 },
+        { id: 2, type: 'header', title: 'Welcome', duration: '2:00', bpm: null }
+    ]
+};
 
-function loadService() {
-    const tableBody = document.getElementById('service-items');
-    tableBody.innerHTML = serviceData.map(item => `
-        <tr>
-            <td>${item.time}</td>
-            <td style="font-weight:600">${item.element}</td>
-            <td style="color:#666">${item.details}</td>
-            <td>${item.duration}</td>
-        </tr>
-    `).join('');
-}
+const renderPlan = () => {
+    const stage = document.querySelector('.stage');
+    stage.innerHTML = `
+        <div class="plan-grid">
+            ${State.planItems.map(item => `
+                <div class="plan-row" data-id="${item.id}">
+                    <div class="drag-handle">⠿</div>
+                    <div class="item-info">
+                        <span class="title">${item.title}</span>
+                        ${item.bpm ? `<span class="badge">${item.bpm} BPM</span>` : ''}
+                    </div>
+                    <div class="item-duration">${item.duration}</div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+};
 
-window.onload = loadService;
+// Inițializare rapidă
+document.addEventListener('DOMContentLoaded', renderPlan);

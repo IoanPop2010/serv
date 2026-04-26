@@ -1,0 +1,55 @@
+:root {
+    --primary: #679436;
+    --surface: #ffffff;
+    --background: #f0f2f5;
+    --text: #1c1e21;
+    --sidebar-width: 260px;
+    --transition-speed: 0.2s;
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.side-nav {
+    background: #232f3e;
+    display: flex;
+    flex-direction: column;
+}
+
+.viewport {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    will-change: transform; /* Hint pentru GPU */
+}
+
+.action-bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px); /* Efect modern Glassmorphism */
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity var(--transition-speed);
+}
+
+.btn-primary:hover { opacity: 0.9; }

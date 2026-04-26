@@ -3,120 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services Ultra | Planificare</title>
+    <title>Services Pro | Ultra Performance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script defer src="app.js"></script>
 </head>
-<body>
-
-    <header class="main-header">
-        <div class="header-left">
-            <div class="app-icon"><i class="fas fa-th-list"></i></div>
-            <nav class="top-nav">
-                <a href="#" class="active">My Schedule</a>
-                <a href="#">Plans</a>
-                <a href="#">Songs</a>
-                <a href="#">Media</a>
-                <a href="#">People</a>
-            </nav>
-        </div>
-        <div class="header-right">
-            <i class="fas fa-search"></i>
-            <i class="fas fa-bell"></i>
-            <div class="user-avatar">AD</div>
-        </div>
-    </header>
-
-    <div class="sub-header">
-        <div class="service-info">
-            <div class="series-thumb">EXODUS</div>
-            <div class="details">
-                <span class="location">San Diego > Contemporary Service</span>
-                <h1>Let my people go</h1>
-                <div class="date-selector">
-                    <button><</button>
-                    <button>+</button>
-                    <span class="date-text">March 23, 2026</span>
-                </div>
+<body class="loading">
+    <div id="app-shell">
+        <nav class="side-nav" aria-label="Main Navigation">
+            <header class="nav-brand">SERVICES</header>
+            <div class="nav-links">
+                <button class="nav-item active" data-view="plans">Plans</button>
+                <button class="nav-item" data-view="songs">Songs</button>
+                <button class="nav-item" data-view="people">People</button>
             </div>
-        </div>
-        <div class="action-buttons">
-            <button class="btn-secondary"><i class="fas fa-print"></i></button>
-            <button class="btn-secondary">Matrix</button>
-            <button class="btn-primary">Actions <i class="fas fa-caret-down"></i></button>
-        </div>
-    </div>
+        </nav>
 
-    <div class="main-layout">
-        <aside class="left-sidebar">
-            <section class="sidebar-box">
-                <div class="box-header">
-                    <span><i class="far fa-clock"></i> Times</span>
-                    <button class="btn-small">Add</button>
+        <main class="viewport">
+            <header class="action-bar">
+                <div class="search-wrapper">
+                    <input type="search" placeholder="Căutare rapidă (Ctrl+K)" id="global-search">
                 </div>
-                <div class="box-content">
-                    <div class="time-item">
-                        <span class="time-label">SERVICE TIMES</span>
-                        <div class="time-detail">
-                            <span class="time-pill green">SU</span>
-                            <strong>9:00am</strong> 05/05
-                        </div>
-                    </div>
+                <div class="user-actions">
+                    <button class="btn-ghost">Matrix</button>
+                    <button class="btn-primary">Add Plan</button>
                 </div>
-            </section>
+            </header>
 
-            <section class="sidebar-box">
-                <div class="box-header">
-                    <span><i class="fas fa-users"></i> Teams</span>
-                    <button class="btn-small">Actions</button>
-                </div>
-                <div class="box-content">
-                    <div class="team-group">
-                        <strong>Band</strong>
-                        <p>6 unsent emails <span class="send-pill">Send</span></p>
-                    </div>
-                </div>
-            </section>
-        </aside>
-
-        <main class="plan-content">
-            <nav class="plan-tabs">
-                <a href="#" class="active">Order</a>
-                <a href="#">Teams</a>
-                <a href="#">Rehearse</a>
-            </nav>
-
-            <div class="order-table-container">
-                <table class="order-table">
-                    <thead>
-                        <tr class="table-group-header">
-                            <th colspan="4">START OF SERVICE</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="drag-handle"><i class="fas fa-ellipsis-v"></i></td>
-                            <td class="item-time">4:30</td>
-                            <td class="item-title">This is Amazing Grace</td>
-                            <td class="item-meta">Song</td>
-                        </tr>
-                        <tr>
-                            <td class="drag-handle"><i class="fas fa-ellipsis-v"></i></td>
-                            <td class="item-time">4:14</td>
-                            <td class="item-title">Reckless Love</td>
-                            <td class="item-meta">Song</td>
-                        </tr>
-                        <tr>
-                            <td class="drag-handle"><i class="fas fa-ellipsis-v"></i></td>
-                            <td class="item-time">1:00</td>
-                            <td class="item-title">Prayer</td>
-                            <td class="item-meta">Band pad underneath</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <section class="stage">
+                <div class="skeleton-loader"></div> </section>
         </main>
     </div>
-
 </body>
 </html>
